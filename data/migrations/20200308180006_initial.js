@@ -26,6 +26,22 @@ exports.up = async function(knex) {
       .boolean("completed")
       .notNull()
       .default(false);
+    table
+      .integer("id")
+      .references("id")
+      .inTable("projects")
+      .onUpdate("CASCADE")
+      .onDelete("SET NULL");
+  });
+  await knex.schema.createTable("project_resources", table => {
+    table
+      .integer("project_id")
+      .references("id")
+      .inTable("projects"),
+      table
+        .integer("resource_id")
+        .references("id")
+        .inTable("projects");
   });
 };
 
