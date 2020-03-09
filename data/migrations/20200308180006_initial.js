@@ -3,12 +3,18 @@ exports.up = async function(knex) {
     table.increment("id").primaryKey();
     table.text("name").notNull();
     table.text("description");
-    table.boolean("completed").notNull(false);
+    table
+      .boolean("completed")
+      .notNull()
+      .default(false);
   });
 
   await knex.schema.createTable("resource", table => {
     table.increment("id").unique();
-    table.text("name").notNull();
+    table
+      .text("name")
+      .notNull()
+      .unique();
     table.text("description");
   });
 
@@ -16,7 +22,10 @@ exports.up = async function(knex) {
     table.increment("id").unique();
     table.text("description").notNull();
     table.text("notes");
-    table.boolean("completed").notNull(false);
+    table
+      .boolean("completed")
+      .notNull()
+      .default(false);
   });
 };
 
