@@ -4,7 +4,8 @@ const db = require("../data/config");
 module.exports = {
   find,
   findByID,
-  add
+  add,
+  remove
 };
 
 function find() {
@@ -12,9 +13,7 @@ function find() {
 }
 
 function findByID(id) {
-  return db("resources")
-    .where({ project_id })
-    .first();
+  return db("resources").where({ project_id });
 }
 
 function add(resources) {
@@ -22,5 +21,7 @@ function add(resources) {
 }
 
 function remove() {
-  return db("projects"), where({ id }).del();
+  return db("projects")
+    .where({ project_id })
+    .del();
 }
