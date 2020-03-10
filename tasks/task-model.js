@@ -13,13 +13,18 @@ function find() {
 }
 
 function finByID(id) {
-  return db("tasks").where({ project_id });
+  return db("tasks").where({ id });
 }
 
 function add(tasks) {
-  return db("tasks").insert(project);
+  return db("tasks")
+    .insert(tasks)
+    .where({ project_id })
+    .first();
 }
 
-function remove() {
-  return db("projects").where({ project_id });
+function remove(id) {
+  return db("tasks")
+    .where({ id })
+    .del();
 }
